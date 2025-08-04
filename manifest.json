@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Perplexity Web MCP Bridge",
+  "version": "1.0.0",
+  "description": "Connects Perplexity's web interface to the MCP (Model Context Protocol) ecosystem",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://perplexity.ai/*",
+    "https://www.perplexity.ai/*",
+    "http://localhost:*/*"
+  ],
+  "background": {
+    "service_worker": "js/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://perplexity.ai/*",
+        "https://www.perplexity.ai/*"
+      ],
+      "js": ["js/content.js"],
+      "css": ["css/mcp-interface.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Perplexity MCP Bridge"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["js/content.js"],
+      "matches": ["https://perplexity.ai/*", "https://www.perplexity.ai/*"]
+    }
+  ]
+}

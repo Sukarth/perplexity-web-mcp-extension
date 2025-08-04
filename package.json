@@ -1,0 +1,28 @@
+{
+  "name": "perplexity-web-mcp-extension",
+  "version": "1.0.0",
+  "description": "Browser extension that connects Perplexity's web interface to the MCP (Model Context Protocol) ecosystem",
+  "main": "js/background.js",
+  "scripts": {
+    "package": "zip -r perplexity-web-mcp-extension.zip . -x node_modules/\\* *.git*"
+  },
+  "keywords": [
+    "perplexity",
+    "mcp",
+    "model-context-protocol",
+    "browser-extension",
+    "chrome-extension",
+    "ai"
+  ],
+  "author": "Sukarth Acharya <https://github.com/sukarth>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sukarth/perplexity-web-mcp-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sukarth/perplexity-web-mcp-extension/issues"
+  },
+  "homepage": "https://github.com/sukarth/perplexity-web-mcp-extension#readme",
+  "dependencies": {}
+}

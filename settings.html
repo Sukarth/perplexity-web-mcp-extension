@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perplexity MCP Bridge - Settings</title>
+    <link href="css/settings.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="settings-container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">🌉</div>
+                <div class="title">MCP Bridge</div>
+            </div>
+
+            <ul class="nav-menu">
+                <li class="nav-item active" data-section="general">
+                    <div class="nav-icon">⚙️</div>
+                    <span>General</span>
+                </li>
+                <li class="nav-item" data-section="bridge">
+                    <div class="nav-icon">🌉</div>
+                    <span>Bridge Settings</span>
+                </li>
+                <li class="nav-item" data-section="servers">
+                    <div class="nav-icon">🖥️</div>
+                    <span>MCP Servers</span>
+                </li>
+                <li class="nav-item" data-section="ui">
+                    <div class="nav-icon">🎨</div>
+                    <span>Interface</span>
+                </li>
+                <li class="nav-item" data-section="advanced">
+                    <div class="nav-icon">🔧</div>
+                    <span>Advanced</span>
+                </li>
+                <!-- <li class="nav-item" data-section="marketplace">
+                    <div class="nav-icon">🛒</div>
+                    <span>Marketplace</span>
+                </li> -->
+                <li class="nav-item" data-section="about">
+                    <div class="nav-icon">ℹ️</div>
+                    <span>About</span>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <h1 id="sectionTitle">General Settings</h1>
+                <!-- <div class="header-actions">
+                    <button class="btn secondary" id="exportBtn">Export Settings</button>
+                    <button class="btn secondary" id="importBtn">Import Settings</button>
+                    <button class="btn danger" id="resetBtn">Clear All</button>
+                </div> -->
+            </div>
+
+            <!-- General Section -->
+            <section id="general" class="settings-section active">
+                <div class="settings-group">
+                    <h3>Bridge Configuration</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="bridgeEnabled">Enable MCP Bridge</label>
+                            <span class="setting-description">Master toggle for the entire MCP bridge system</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="bridgeEnabled" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="autoConnect">Auto-connect on startup</label>
+                            <span class="setting-description">Automatically connect to the bridge when extension
+                                starts</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="autoConnect" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="bridgeUrl">Bridge URL</label>
+                            <span class="setting-description">WebSocket URL for the MCP bridge</span>
+                        </div>
+                        <div class="setting-control">
+                            <input type="text" id="bridgeUrl" value="ws://localhost:3001" class="input">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Prompt Enhancement</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="alwaysInject">Smart prompt enhancement</label>
+                            <span class="setting-description">Automatically enhance prompts with MCP tool information when relevant keywords are detected in the query. Only applies to the first prompt in a thread.</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="alwaysInject">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="smartDetection">Smart tool detection</label>
+                            <span class="setting-description">Only inject prompts when relevant tools are
+                                available</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="smartDetection" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div> -->
+                </div>
+            </section>
+
+            <!-- Bridge Settings Section -->
+            <section id="bridge" class="settings-section">
+                <div class="settings-info">
+                    <p class="info-text">
+                        <strong>Note:</strong> You can use <code>-1</code> as a value for unlimited attempts or
+                        timeouts.
+                    </p>
+                    <p class="caution-text">⚠️ Use with caution as this may cause the extension to wait indefinitely.
+                    </p>
+                </div>
+                <div class="settings-group">
+                    <h3>Connection Settings</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="reconnectAttempts">Reconnection attempts</label>
+                            <span class="setting-description">Number of times to retry connection on failure</span>
+                        </div>
+                        <div class="setting-control">
+                            <input type="number" id="reconnectAttempts" value="5" min="-1" max="20" class="input">
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="connectionTimeout">Connection timeout (ms)</label>
+                            <span class="setting-description">Time to wait for connection before timing out</span>
+                        </div>
+                        <div class="setting-control">
+                            <input type="number" id="connectionTimeout" value="5000" min="-1" max="30000" step="1000"
+                                class="input">
+                        </div>
+                    </div>
+
+
+
+                    <!-- <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="responseMonitoring">Response monitoring</label>
+                            <span class="setting-description">Automatically detect and execute tool calls in
+                                responses</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="responseMonitoring" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div> -->
+                </div>
+                <div class="settings-group">
+                    <h3>Tool Execution</h3>
+                    <!-- <div class="setting-item">
+                                     <div class="setting-label">
+                                        <label for="autoExecute">Auto-execute detected tools</label>
+                                        <span class="setting-description">Automatically run MCP tools found in responses</span>
+                                    </div>
+                                    <div class="setting-control">
+                                        <label class="toggle">
+                                            <input type="checkbox" id="autoExecute" checked>
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                    </div> 
+                                </div> -->
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="executionTimeout">Tool execution timeout (ms)</label>
+                            <span class="setting-description">Maximum time to wait for tool execution</span>
+                        </div>
+                        <div class="setting-control">
+                            <input type="number" id="executionTimeout" value="30000" min="-1" max="120000" step="5000"
+                                class="input">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- MCP Servers Section -->
+            <section id="servers" class="settings-section">
+                <div class="settings-group">
+                    <div class="group-header">
+                        <h3>Connected Servers</h3>
+                        <button class="btn primary" id="refreshServers">Refresh</button>
+                    </div>
+                    <div id="serversList" class="servers-list">
+                        <div class="loading">Loading servers...</div>
+                    </div>
+                </div>
+
+                <!-- <div class="settings-group">
+                    <h3>Server Configuration</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="autoDiscoverServers">Auto-discover servers</label>
+                            <span class="setting-description">Automatically detect and connect to available MCP
+                                servers</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="autoDiscoverServers" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Configuration Editor Section - Only visible when bridge is connected -->
+                <div class="settings-group" id="configEditorGroup" style="display: none;">
+                    <div class="group-header">
+                        <h3>Configuration</h3>
+                        <button class="btn secondary" id="openConfigEditor">📝 Edit Config File</button>
+                    </div>
+                    <div id="configStatus" class="config-status">
+                        <div class="status-info">
+                            <span class="status-dot success"></span>
+                            <span class="status-text">Configuration file ready for editing</span>
+                        </div>
+                    </div>
+                    <div id="configErrors" class="config-errors" style="display: none;">
+                        <div class="error-header">
+                            <h4>⚠️ Configuration Issues</h4>
+                        </div>
+                        <div id="configErrorsList" class="error-list">
+                            <!-- Errors will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Server Details Section -->
+            <section id="server-details" class="settings-section">
+                <div class="server-details-header">
+                    <button class="btn secondary" id="backToServers">← Back to Servers</button>
+                    <div class="server-details-title">
+                        <h1 id="serverDetailsTitle">Server Details</h1>
+                        <div class="server-status-indicator" id="serverDetailsStatus">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Connected</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <div class="server-details-overview">
+                        <div class="server-info-card">
+                            <h3 id="serverInfoName">Server Name</h3>
+                            <div class="server-meta">
+                                <div class="meta-item">
+                                    <span class="meta-label">ID:</span>
+                                    <span class="meta-value" id="serverInfoId">server-id</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Status:</span>
+                                    <span class="meta-value" id="serverInfoStatus">Connected</span>
+                                </div>
+                                <div class="meta-item">
+                                    <span class="meta-label">Tools:</span>
+                                    <span class="meta-value" id="serverInfoToolCount">0 tools</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="server-controls">
+                            <div class="setting-item">
+                                <div class="setting-label">
+                                    <label for="serverEnabled">Enable Server</label>
+                                    <span class="setting-description">Allow this server to be used for tool
+                                        execution</span>
+                                </div>
+                                <div class="setting-control">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="serverEnabled" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="setting-item">
+                                <div class="setting-label">
+                                    <label for="autoApproveAllTools">Auto-approve All Tools</label>
+                                    <span class="setting-description">Automatically approve all tool executions from
+                                        this server</span>
+                                </div>
+                                <div class="setting-control">
+                                    <label class="toggle">
+                                        <input type="checkbox" id="autoApproveAllTools">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Tools</h3>
+                    <div id="serverToolsList" class="server-tools-list">
+                        <div class="loading">Loading tools...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Interface Section -->
+            <section id="ui" class="settings-section">
+                <div class="settings-group">
+                    <h3>Perplexity Interface</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="showStatusPanel">Show status panel</label>
+                            <span class="setting-description">Display the MCP status panel on Perplexity</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="showStatusPanel" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="panelPosition">Panel position</label>
+                            <span class="setting-description">Where to display the status panel</span>
+                        </div>
+                        <div class="setting-control">
+                            <select id="panelPosition" class="select">
+                                <option value="top-right">Top Right</option>
+                                <option value="top-left">Top Left</option>
+                                <option value="bottom-right">Bottom Right</option>
+                                <option value="bottom-left" selected>Bottom Left</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- <div class="setting-item">
+                                        <div class="setting-label">
+                                            <label for="showDebugPanel">Show debug panel</label>
+                                            <span class="setting-description">Display the debug panel for troubleshooting</span>
+                                        </div>
+                                        <div class="setting-control">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="showDebugPanel">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div> -->
+                </div>
+
+                <!-- <div class="settings-group">
+                    <h3>Tool Results Display</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="showToolResults">Show tool results</label>
+                            <span class="setting-description">Display tool execution results inline</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="showToolResults" checked>
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="resultStyle">Result display style</label>
+                            <span class="setting-description">How to display tool execution results</span>
+                        </div>
+                        <div class="setting-control">
+                            <select id="resultStyle" class="select">
+                                <option value="inline">Inline with response</option>
+                                <option value="popup">Popup overlay</option>
+                                <option value="sidebar">Sidebar panel</option>
+                                <option value="minimal">Minimal indicator</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+            </section>
+
+            <!-- Advanced Section -->
+            <section id="advanced" class="settings-section">
+                <div class="settings-group">
+                    <h3>Debug Options</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="verboseLogging">Verbose logging</label>
+                            <span class="setting-description">Log detailed information to browser console</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="verboseLogging">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Legacy Mode setting temporarily disabled
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label for="legacyMode">Legacy Mode</label>
+                            <span class="setting-description">Use the old behavior where MCP tool calls and responses are visible to the user</span>
+                        </div>
+                        <div class="setting-control">
+                            <label class="toggle">
+                                <input type="checkbox" id="legacyMode">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    -->
+                </div>
+
+                <!-- <div class="settings-group">
+                                    <h3>Experimental Features</h3>
+                                    <div class="setting-item">
+                                        <div class="setting-label">
+                                            <label for="betaFeatures">Enable beta features</label>
+                                            <span class="setting-description">Access experimental functionality (may be unstable)</span>
+                                        </div>
+                                        <div class="setting-control">
+                                            <label class="toggle">
+                                                <input type="checkbox" id="betaFeatures">
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div> -->
+
+                <div class="settings-group">
+                    <h3>Data Management</h3>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label>Settings Backup & Restore</label>
+                            <span class="setting-description">Export, import, or clear your extension settings.</span>
+                        </div>
+                        <div class="setting-control">
+                            <div class="button-group">
+                                <input type="file" id="importFileInput" accept=".json" style="display: none;">
+                                <button class="btn secondary" id="importSettingsBtn">Import</button>
+                                <button class="btn secondary" id="exportSettingsBtn">Export</button>
+                                <button class="btn danger" id="clearAllSettingsBtn">Clear All Settings</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-label">
+                            <label>Thread Data</label>
+                            <span class="setting-description">Export, import, or clear saved conversation data.</span>
+                        </div>
+                        <div class="setting-control">
+                            <div class="button-group">
+                                <input type="file" id="importThreadDataInput" accept=".json" style="display: none;">
+                                <button class="btn secondary" id="importThreadDataBtn">Import</button>
+                                <button class="btn secondary" id="exportThreadDataBtn">Export</button>
+                                <button class="btn danger" id="clearAllThreadDataBtn">Clear All Threads</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marketplace Section -->
+            <section id="marketplace" class="settings-section">
+                <div class="settings-group">
+                    <h3>MCP Server Marketplace</h3>
+                    <p class="description">Discover and install MCP servers from the community</p>
+
+                    <div class="marketplace-search">
+                        <input type="text" placeholder="Search servers..." class="search-input">
+                        <button class="btn primary">Search</button>
+                    </div>
+
+                    <div class="marketplace-categories">
+                        <button class="category-btn active">All</button>
+                        <button class="category-btn">File Systems</button>
+                        <button class="category-btn">Databases</button>
+                        <button class="category-btn">APIs</button>
+                        <button class="category-btn">AI Tools</button>
+                        <button class="category-btn">Utilities</button>
+                    </div>
+
+                    <div class="marketplace-items">
+                        <div class="marketplace-item">
+                            <div class="item-icon">📁</div>
+                            <div class="item-info">
+                                <h4>File System Server</h4>
+                                <p>Access local file system operations</p>
+                                <span class="item-tag">Official</span>
+                            </div>
+                            <button class="btn primary">Install</button>
+                        </div>
+
+                        <div class="marketplace-item">
+                            <div class="item-icon">🗄️</div>
+                            <div class="item-info">
+                                <h4>Database Connector</h4>
+                                <p>Connect to SQL and NoSQL databases</p>
+                                <span class="item-tag">Community</span>
+                            </div>
+                            <button class="btn primary">Install</button>
+                        </div>
+
+                        <div class="marketplace-item">
+                            <div class="item-icon">🌐</div>
+                            <div class="item-info">
+                                <h4>Web API Client</h4>
+                                <p>Make HTTP requests to web APIs</p>
+                                <span class="item-tag">Community</span>
+                            </div>
+                            <button class="btn primary">Install</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="settings-section">
+                <div class="settings-group">
+                    <h3>About Perplexity MCP Bridge</h3>
+                    <div class="about-info">
+                        <div class="about-item">
+                            <strong>Version:</strong> 1.0.0
+                        </div>
+                        <div class="about-item">
+                            <strong>Build:</strong> 2024.12.31
+                        </div>
+                        <div class="about-item">
+                            <strong>License:</strong> MIT
+                        </div>
+                    </div>
+
+                    <div class="about-links">
+                        <a href="#" class="link-btn">Documentation</a>
+                        <a href="#" class="link-btn">GitHub Repository</a>
+                        <a href="#" class="link-btn">Report Issues</a>
+                        <a href="#" class="link-btn">Discord Community</a>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <h3>Credits</h3>
+                    <p>Built with ❤️ by Sukarth Acharya</p>
+                    <p>Special thanks to Anthropic for creating the MCP ecosystem, and the open-source community for
+                        their
+                        contributions.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+    </div>
+
+
+
+
+
+
+    <!-- Hidden file input for import -->
+    <input type="file" id="settingsFileInput" accept=".json" style="display: none;">
+
+    <script src="js/settings.js"></script>
+</body>
+
+</html>
